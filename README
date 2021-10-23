@@ -1,7 +1,7 @@
-Package %{scl_name} provides Python 3.8 interpreter with a set of extension
+Package %{scl_name} provides Python 3.10 interpreter with a set of extension
 packages delivered as a Software Collection. For more information about
 Software Collections, see the scl(1) man page. By installing the %{scl_name}
-collection, you will get Python 3.8 interpreter and several extension packages
+collection, you will get Python 3.10 interpreter and several extension packages
 useful for web applications development.
 
 Usage: scl enable %{scl} 'python'

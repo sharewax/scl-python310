@@ -1,16 +1,17 @@
 %global scl_name_prefix rh-
 %global scl_name_base python
-%global scl_name_version 38
+%global scl_name_version 310
 %global scl %{scl_name_prefix}%{scl_name_base}%{scl_name_version}
 
-## General notes about python38 SCL packaging
+## General notes about python310 SCL packaging
 # - the names of packages are NOT prefixed with 'python3-' (e.g. are the same as in Fedora)
 # - the names of binaries of Python 3 itself are both python{-debug,...} and python3{-debug,...}
 #   so both are usable in shebangs, the non-versioned binaries are preferred.
 # - the names of other binaries are NOT prefixed with 'python3-'.
 
-# Bootstrap disables dependency on rh-python38-python-srpm-macros which aren't built yet
-%bcond_with bootstrap
+# Bootstrap disables dependency on rh-python310-python-srpm-macros which aren't built yet
+#bcond_with bootstrap
+%bcond_without bootstrap
 
 %global nfsmountable 1
 
@@ -24,8 +25,8 @@
 
 Summary: Package that installs %scl
 Name: %scl_name
-Version: 2.0
-Release: 4%{?dist}
+Version: 3.0
+Release: 1%{?dist}
 License: GPLv2+
 Source0: macros.additional.%{scl}
 Source1: README
@@ -129,7 +130,7 @@ install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 %files runtime -f filelist
 %doc README LICENSE
 %scl_files
-%{_mandir}/man7/%{scl_name}.*
+#{_mandir}/man7/%{scl_name}.*
 
 %files build
 %{_root_sysconfdir}/rpm/macros.%{scl}-config
@@ -138,6 +139,10 @@ install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Tue Oct 19 2021 Anton Samets <a_samets@wargaming.net> - 3.0-1
+- WGSA-45276: Created the rh-python310 metapackage by importing and
+  modifying rh-python38 with bootstrap
+
 * Thu Jan 30 2020 Tomas Orsava <torsava@redhat.com> - 2.0-4
 - Modify PATH to also look into /usr/local/bin
 - Resolves: rhbz#1671025
